@@ -49,6 +49,33 @@ router.get('/semesters',function(req,res){
   });
 
 });
+
+
+/**
+* Departments endpoints
+* Get list of departments in a selected semester
+*/
+
+router.get('/:semester/departments',function(req,res){
+  var semester_id = req.params.semester;
+  console.log(semester_id);
+  client.connect(function(err){
+    if(err){return console.log('could not connect to postgres', err);}
+    var query_s = 'SELECT * from departments where semester_id =' + semester_id;
+    console.log(query_s);
+    client.query('SELECT * from departments where semester_id =' + semester_id,function(err,result){
+        if(err){
+          return console.log('error running query',err); }
+        console.log(result);
+        return res.send(result.rows);
+        client.end();  
+    });
+  });
+
+
+
+});
+
 //prefix /api in the link
 
 app.use('/api',router);
