@@ -2,17 +2,16 @@ var express = require('express');
 var app = express();
 var router = express.Router();
 var pg = require('pg');
-
+var _ = require('underscore');
 var conString = 'postgres://nhatdao: @localhost:5432/nhatdao';
 //app listens on port 8080
 var port = process.env.PORT || 8080;
+var client = new pg.Client(conString);
 
-//department endpoint
-router.get('/departments',function(req,res){
+//classes endpoint
+router.get('/classes',function(req,res){
   var results = [];  
-  //Select query data  
-  var client = new pg.Client(conString);
- 
+  //Select query data    
   client.connect(function(err) {
   if(err) {
     return console.error('could not connect to postgres', err);
@@ -21,13 +20,38 @@ router.get('/departments',function(req,res){
     if(err) {
       return console.error('error running query', err);
     }
-    return res.send(result.rows[0]);
+
+    return res.send(result.rows);
     //output: Tue Jan 15 2013 19:12:47 GMT-600 (CST)
     client.end();
   });
 });
 });
 
+/**
+/* Semester endpoints
+/* get list of current active semesters
+*/
+router.get('/semesters',function(req,res){
+
+  client.connect(function(err){
+    if(err){
+      return console.log('could not connect to postgres', err); 
+    }
+
+    client.query('SELECT * FROM semesters',function(err,result){
+
+      if(err){return console.log('error running query',err); }
+
+      return res.send(result.rows);
+      client.end();
+    });
+  });
+
+});
+//prefix /api in the link
+
 app.use('/api',router);
+
 app.listen(port);
 console.log("Listen on port" + port);
