@@ -13,7 +13,6 @@ router.route('/:semester/departments')
        client.query('SELECT * from departments where semester_id =' + semester_id,function(err,result){
 
         if(err) throw err;
-
         res.json(result.rows);
         //client.end();
        });
@@ -22,5 +21,14 @@ router.route('/:semester/departments')
 
     });
 
+//get departments from all semesters
+router.route('/departments')
+  .get(function(req,res){
+    client.query('SELECT * from departments',function(err,result){
+      if(err) throw err;
+      res.json(result.rows);
+    
+    });
+  });
 module.exports = router;
 

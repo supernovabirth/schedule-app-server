@@ -5,7 +5,10 @@
   "main": "app.js",
   "dependencies": {
     "express": "^4.13.3",
-    "pg": "^4.4.2"
+    "mocha": "^2.3.3",
+    "pg": "^4.4.2",
+    "should": "^7.1.0",
+    "supertest": "^1.1.0"
   },
   "devDependencies": {},
   "scripts": {
