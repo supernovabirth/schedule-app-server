@@ -1,0 +1,24 @@
+{
+  "name": "scheduleapp",
+  "version": "1.0.0",
+  "description": "mymav api",
+  "main": "app.js",
+  "dependencies": {
+    "express": "^4.13.3",
+    "pg": "^4.4.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/daoanhnhat1995/schedule-app-server.git"
+  },
+  "author": "Nhat Dao",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/daoanhnhat1995/schedule-app-server/issues"
+  },
+  "homepage": "https://github.com/daoanhnhat1995/schedule-app-server#readme"
+}
