@@ -1,7 +1,11 @@
 var express = require('express');
 var app = express();
 var port = process.env.PORT || 8080;
-var data = require('./routes/class');
-app.use('/api', data);
+var classes = require('./routes/class');
+var semesters = require('./routes/semester');
+var departments = require('./routes/department');
+app.use('/api', classes);
+app.use('/api', departments);
+app.use('/api', semesters);
 app.listen(port);
 console.log("Listen on port" + port);
