@@ -8,8 +8,9 @@ router.route('/semesters')
 
     client.query('SELECT * FROM semesters',function(err,result){
 
-      if(err){throw err; }
-      res.json(result.rows);
+      if(err) res.status(400).json(err);
+
+      res.status(200).json(result.rows);
       
       //client.end();
     });
